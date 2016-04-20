@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header text-center"> 
+  <h1>Paula's Blog<small>things to read</small></h1>
+ </div> 
+
+<div class="container">
+  <% @blog_posts.each do |blog_post| %>
+    <div class="well well-lg blog_well">
+        <h3><%= link_to blog_post.title, blog_post %></h3>
+        <p>author: <%= blog_post.author %></p>
+        <p>published: <%= blog_post.created_at %> </p>
+        <p><%= truncate(blog_post.blog_entry, length: 50) %></p>
+        <p><%= link_to 'read more', blog_post %></p>
+        <%= link_to 'Edit', edit_blog_post_path(blog_post) %>
+        <%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' } %>
+ 
+      </div>
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'New Blog post', new_blog_post_path %>

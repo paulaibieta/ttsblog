@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page_header">	
+	<p>
+  	<h1><strong><%= @blog_post.title %></strong><h1>
+	</p>
+	<p>
+  	<h3><strong>by </strong><%= @blog_post.author %></h3>
+	</p>
+	<p><%= @blog_post.created_at.strftime("Submitted on %m/%d/%Y at %I:%m%p") %></p>
+</div>	
+
+<div class="container">
+	<div class="blog_text well well-lg">
+		<p><%= @blog_post.blog_entry %></p>
+	</div>
+</div>
+
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-6 new_comment_form">
+			<%= render 'comments/form' %>
+		</div>
+		<div class="col-md-6 comment_history">	
+			<% @blog_post.comments.each do |comment| %>
+				<p>Author: <%= comment.author %></p>
+				<p>Comment: <%= comment.comment_entry %></p>
+				<p><%= comment.created_at.strftime("Submitted on %m/%d/%Y at %I:%m%p") %></p>
+			<% end %>		
+		</div>
+	</div>
+
+</div>
+
+<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
+<%= link_to 'Back', blog_posts_path %>
